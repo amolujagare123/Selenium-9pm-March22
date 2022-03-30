@@ -1,3 +1,5 @@
+package SeleniumBasics;
+
 import io.netty.handler.codec.compression.ZstdOptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
