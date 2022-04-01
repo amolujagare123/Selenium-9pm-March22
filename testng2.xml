@@ -1,0 +1,26 @@
+<suite name="project name">
+
+<!--<groups>
+    <run>
+        <include name="email"/>
+    </run>
+</groups>-->
+
+    <parameter name="myUrl" value="https://billing.scriptinglogic.net/index.php/dashboard"/>
+    <parameter name="username" value="selenium"/>
+    <parameter name="password" value="java"/>
+
+    <test name="module 1">
+        <classes>
+            <class name="TestNGDemo.Demo.ClassOne"/>
+            <class name="TestNGDemo.Demo.ClassTwo"/>
+        </classes>
+    </test>
+
+    <test name ="module 2">
+        <classes>
+            <class name="TestNGDemo.Demo.ClassThree"/>
+        </classes>
+    </test>
+
+</suite>

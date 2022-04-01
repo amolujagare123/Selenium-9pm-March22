@@ -2,15 +2,18 @@
 
     <test name="module 1">
         <classes>
-
             <class name="TestNGDemo.Demo.ClassOne">
                 <methods>
-                    <include name="classOneTest1"/>
+                    <exclude name="classOneTest2"/>
                 </methods>
             </class>
 
+            <class name="TestNGDemo.Demo.ClassTwo">
+                <methods>
+                    <exclude name="ClassTwoTest2"/>
+                </methods>
 
-            <class name="TestNGDemo.Demo.ClassTwo"/>
+            </class>
         </classes>
     </test>
 
