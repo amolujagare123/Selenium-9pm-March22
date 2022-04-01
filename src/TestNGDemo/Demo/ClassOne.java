@@ -1,8 +1,21 @@
 package TestNGDemo.Demo;
 
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class ClassOne {
+
+    @BeforeTest
+    public void beforeMyTest()
+    {
+        System.out.println("beforeMyTest");
+    }
+    @AfterTest
+    public void afterMyTest()
+    {
+        System.out.println("afterMyTest");
+    }
 
     @Test
     public void classOneTest1()
@@ -10,7 +23,7 @@ public class ClassOne {
         System.out.println("classOneTest1");
     }
 
-    @Test (enabled = false)
+    @Test /*(enabled = false)*/
     public void classOneTest2()
     {
         System.out.println("classOneTest2");

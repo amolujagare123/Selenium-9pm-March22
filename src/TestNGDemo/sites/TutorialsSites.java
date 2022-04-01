@@ -7,7 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SocialSites {
+public class TutorialsSites {
 
     WebDriver driver;
 
@@ -25,27 +25,29 @@ public class SocialSites {
         driver.close();
     }
 
-    @Test (priority = 1)
-    public void linkedIn()
+    @Test
+    public void scriptinglogic()
     {
-        driver.get("https://www.linkedin.com/");
+        driver.get("http://scriptinglogic.com");
     }
 
-    @Test (priority = 2)
-    public void facebook()
+    @Test
+    public void javatpoint()
     {
-        driver.get("https://facebook.com/");
+        driver.get("https://www.javatpoint.com/");
     }
 
-    @Test //(priority = 3,enabled = false)
-    public void instagram()
+    @Test
+    public void w3schools()
     {
-        driver.get("https://instagram.com/");
+        driver.get("https://www.w3schools.com/");
     }
 
-    @Test (priority = 4)
-    public void twitter()
+    @Test
+    public void geeksforgeeks()
     {
-        driver.get("https://twitter.com/");
+        driver.get("https://www.geeksforgeeks.org/");
     }
+
+
 }
