@@ -52,4 +52,39 @@ public class LoginDemo {
         Assert.assertEquals(actual,expected,"This is not a dashboard");
 
     }
+
+    @Test
+    public void inloginTest() {
+
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+        driver.get("https://stock.scriptinglogic.net/");
+
+        WebElement txtUser = driver.findElement(By.xpath("//input[@id='login-username']"));
+        txtUser.sendKeys("sdsd");
+
+        WebElement txtPassword = driver.findElement(By.xpath("//input[@id='login-password']"));
+        txtPassword.sendKeys("dsd");
+
+        WebElement btnLogin = driver.findElement(By.xpath("//input[@type='submit']"));
+        btnLogin.click();
+
+        String expected = "Wrong Username or Password";
+        String actual="";
+        try {
+             actual = driver.findElement(By.xpath("//div[@class='error-box round']")).getText();
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        System.out.println("expected="+expected);
+        System.out.println("actual="+actual);
+
+        Assert.assertEquals(actual,expected,"wrong or no error message");
+
+    }
 }
