@@ -1,17 +1,23 @@
-package ExtentReportDemo;
+package ReportsDemo.ExtentReportDemo;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
+
+import static ReportsDemo.ExtentReportDemo.Util.ForScreenshot.takingScreenshot;
 
 public class LoginDemo {
 
@@ -44,8 +50,7 @@ public class LoginDemo {
 
 
     @Test
-    public void loginTest1()
-    {
+    public void loginTest1() throws IOException {
         ExtentTest test = extent.createTest("valid login");
 
         WebDriverManager.chromedriver().setup();
@@ -73,11 +78,22 @@ public class LoginDemo {
 
         test.info("login button is clicked");
 
+        String expected = "https://stock.scriptinglogic.net/dashboard.php";
+        String actual = driver.getCurrentUrl();
+
+        try {
+            Assert.assertEquals(actual, expected, "This is not a dashboard");
+            test.pass("this is passed");
+        } catch (AssertionError e)
+        {
+            test.fail(e.getMessage());
+            test.addScreenCaptureFromPath("./myScreenshots/"+takingScreenshot(driver));
+        }
+
     }
 
     @Test
-    public void loginTest2()
-    {
+    public void loginTest2() throws IOException {
         ExtentTest test = extent.createTest("invalid login");
 
         WebDriverManager.chromedriver().setup();
@@ -105,11 +121,27 @@ public class LoginDemo {
 
         test.info("login button is clicked");
 
+
+
+
+
+        String expected  = "https://stock.scriptinglogic.net/index.php?msg=Wrong%20Username%20or%20Password&type=error";
+        String actual = driver.getCurrentUrl();
+
+
+        try {
+            Assert.assertEquals(actual, expected, "wrong or no error message");
+            test.pass("this is passed");
+        } catch (AssertionError e)
+        {
+            test.fail(e.getMessage());
+            test.addScreenCaptureFromPath("./myScreenshots/"+takingScreenshot(driver));
+        }
+
     }
 
     @Test
-    public void loginTest3()
-    {
+    public void loginTest3() throws IOException {
         ExtentTest test = extent.createTest("blank login");
 
         WebDriverManager.chromedriver().setup();
@@ -136,6 +168,19 @@ public class LoginDemo {
         btnLogin.click();
 
         test.info("login button is clicked");
+
+        String expected  = "https://stock.scriptinglogic.com";
+        String actual = driver.getCurrentUrl();
+
+        try {
+            Assert.assertEquals(actual, expected, "wrong or no error message");
+            test.pass("this is passed");
+        } catch (AssertionError e)
+        {
+            test.fail(e.getMessage());
+            test.addScreenCaptureFromPath("./myScreenshots/"+takingScreenshot(driver));
+        }
+
 
     }
 }
