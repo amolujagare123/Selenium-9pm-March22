@@ -7,23 +7,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TutorialsSites {
+public class TutorialsSites extends InitDriver{
 
-    WebDriver driver;
-
-    @BeforeClass
-    public void openBrowser()
-    {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
-
-    @AfterClass
-    public void closeBrowser() throws InterruptedException {
-        Thread.sleep(4000);
-        driver.close();
-    }
 
     @Test
     public void scriptinglogic()
