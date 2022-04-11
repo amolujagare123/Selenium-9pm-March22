@@ -1,11 +1,12 @@
 package DataDProviderDemo;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +18,7 @@ import org.testng.annotations.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class AddCusomer {
+public class AddCusomerXlsx {
     WebDriver driver;
 
     @BeforeClass
@@ -53,30 +54,27 @@ public class AddCusomer {
 
     @DataProvider
     public Object[][] getData() throws IOException {
-        FileInputStream fis = new FileInputStream("Data/MyData.xls");
-        HSSFWorkbook workbook = new HSSFWorkbook(fis);
-        HSSFSheet sheet = workbook.getSheet("add customer");
-        int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getLastCellNum();
 
-        Object[][] data = new Object[rowCount][colCount];
+        Object[][] data=null;
+        try {
+            FileInputStream fis = new FileInputStream("Data/MyData2.xlsx");
+            XSSFWorkbook workbook = new XSSFWorkbook(fis);
+            XSSFSheet sheet = workbook.getSheet("add customer");
+            int rowCount = sheet.getPhysicalNumberOfRows();
+            int colCount = sheet.getRow(0).getLastCellNum();
+            data = new Object[rowCount][colCount];
 
-        for (int i =0; i<rowCount;i++)
-        {
-            HSSFRow row = sheet.getRow(i);
+            for (int i = 0; i < rowCount; i++) {
+                XSSFRow row = sheet.getRow(i);
 
-            for(int j=0;j<colCount;j++)
-            {
-                HSSFCell cell = row.getCell(j);
-
-                if (cell==null)
-                    data[i][j] = "";
-
-                else {
-                    data[i][j] = cell.toString().trim();
+                for (int j = 0; j < colCount; j++) {
+                    data[i][j] = row.getCell(j).toString().trim();
                 }
-
             }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
         return data;
     }
